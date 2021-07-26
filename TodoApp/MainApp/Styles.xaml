@@ -1,0 +1,24 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:TodoApp">
+    <SolidColorBrush x:Key="MainColor" Color="#F4F9F9"></SolidColorBrush>
+    <SolidColorBrush x:Key="SecondaryColor" Color="#CCF2F4"></SolidColorBrush>
+    <SolidColorBrush x:Key="TirtieryColor" Color="#A4EBF3"></SolidColorBrush>
+    <SolidColorBrush x:Key="QuadColor" Color="#AAAAAA"></SolidColorBrush>
+    <Style x:Key="Header" TargetType="TextBlock">
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="FontWeight" Value="Bold" />
+        <Setter Property="FontSize" Value="30" />
+        <Setter Property="Foreground" Value="#EEEEEE" />
+    </Style>
+    <Style x:Key="TodoItem" TargetType="Border">
+        <Setter Property="Background" Value="#00ADB5" />
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="#FF97D4DA"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <BitmapImage x:Key="MainIcon" UriSource="/Resources/TodoAppImage.png" />
+</ResourceDictionary>
