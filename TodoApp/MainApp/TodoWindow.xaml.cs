@@ -33,6 +33,9 @@ namespace TodoApp
             this.DataContext = this;
         }
 
+        /// <summary>
+        /// Sorts todos from our model list
+        /// </summary>
         private void SortTodos()
         {
             List<Todo> todos = Models.Application.Instance.allTodos;
@@ -66,6 +69,9 @@ namespace TodoApp
             selectedItem = newTodo.Name;
         }
 
+        /// <summary>
+        /// When a todo is dropped it must be positioned back in the correct place
+        /// </summary>
         private void Todo_Drop(object sender, DragEventArgs e)
         {
             Todo moveTodo = (Todo)e.Data.GetData(typeof(Todo));
@@ -142,6 +148,11 @@ namespace TodoApp
             WindowState = WindowState.Minimized;
         }
 
+        /// <summary>
+        /// If start is background is true then just hide the window on close
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CloseWindow(object sender, RoutedEventArgs e)
         {
             if (!Models.Application.Instance.SettingsFile.StartInBackground)

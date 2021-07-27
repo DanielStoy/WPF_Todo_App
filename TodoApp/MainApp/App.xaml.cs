@@ -38,6 +38,11 @@ namespace TodoApp
             ShowMainWindow(!settingsExists, false);
         }
 
+        /// <summary>
+        /// Gets or creates the settings file based on if it exists or not
+        /// </summary>
+        /// <param name="rootDirectory">The root directory, located in local appdata</param>
+        /// <returns></returns>
         private bool GetSettings(string rootDirectory)
         {
             string settingsFilePath = Path.Combine(rootDirectory, "Settings.json");
@@ -72,6 +77,10 @@ namespace TodoApp
             return settingsExists;
         }
 
+        /// <summary>
+        /// Gets or creates the todo json file
+        /// </summary>
+        /// <param name="rootDirectory">The root directory, located in local appdata</param>
         private void GetTodos(string rootDirectory)
         {
             string todoFilePath = Path.Combine(rootDirectory, "Todo.json");
@@ -97,6 +106,9 @@ namespace TodoApp
             }
         }
 
+        /// <summary>
+        /// Shows windows toast messages
+        /// </summary>
         private void ShowNotifications()
         {
             if (Models.Application.Instance.SettingsFile.ShowNotifications)
@@ -127,6 +139,9 @@ namespace TodoApp
             }
         }
 
+        /// <summary>
+        /// Creates the notify icon
+        /// </summary>
         private void SetupNotifyIcon()
         {
             _notifyIcon = new System.Windows.Forms.NotifyIcon();
@@ -136,6 +151,9 @@ namespace TodoApp
             CreateContextMenu();
         }
 
+        /// <summary>
+        /// Creates the context menu on the context icon
+        /// </summary>
         private void CreateContextMenu()
         {
             _notifyIcon.ContextMenuStrip =
@@ -144,6 +162,11 @@ namespace TodoApp
             _notifyIcon.ContextMenuStrip.Items.Add("Exit").Click += (s, e) => CloseApp();
         }
 
+        /// <summary>
+        /// If start in background is on then start in the background. Also show settings if settings file doesn't exist
+        /// </summary>
+        /// <param name="showSettings"></param>
+        /// <param name="notificationClicked"></param>
         private void ShowMainWindow(bool showSettings, bool notificationClicked)
         {
             if (!Models.Application.Instance.SettingsFile.StartInBackground && !notificationClicked)
@@ -184,6 +207,9 @@ namespace TodoApp
             }
         }
 
+        /// <summary>
+        /// Need to add our app to startup if allowed
+        /// </summary>
         private void AddToStartup()
         {
             if (Models.Application.Instance.SettingsFile.StartUp)
@@ -208,7 +234,11 @@ namespace TodoApp
             Current.Shutdown();
         }
 
-        //Update the settings and todo area on exit
+        /// <summary>
+        /// Update the settings and todo json on close
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Application_Exit(object sender, ExitEventArgs e)
         {
             AddToStartup();
